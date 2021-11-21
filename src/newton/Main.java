@@ -1,12 +1,16 @@
 package newton;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import newton.view.View;
+
+import java.io.IOException;
 
 public class Main extends Application {
     public static void main(String[] args) {
@@ -14,7 +18,20 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
+        View view = new View();
+        Scene scene = new Scene(view);
+        primaryStage.setTitle("Newton");
+        primaryStage.setScene(scene);
+        primaryStage.show();
+        primaryStage.requestFocus();
+
+        //         stop le programme lorsque l'on quitte la fenêtre
+        primaryStage.setOnCloseRequest(t -> {
+            Platform.exit();
+            System.exit(0);
+        });
+        /*
         primaryStage.setTitle("Hello World!");
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
@@ -29,6 +46,6 @@ public class Main extends Application {
         StackPane root = new StackPane();
         root.getChildren().add(btn);
         primaryStage.setScene(new Scene(root, 300, 250));
-        primaryStage.show();
+        primaryStage.show();*/
     }
 }
