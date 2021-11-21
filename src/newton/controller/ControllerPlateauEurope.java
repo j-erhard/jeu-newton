@@ -1,4 +1,7 @@
 package newton.controller;
 
-public class ControllerPlateauEurope {
+public class ControllerPlateauEurope extends Controller{
+    public ControllerPlateauEurope() {
+        super();
+    }
 }
