@@ -1,4 +1,9 @@
 package newton.controller;
 
-public class ControllerJouer {
+import javafx.event.ActionEvent;
+
+public class ControllerJouer extends Controller{
+    public ControllerJouer() {
+        super();
+    }
 }

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
@@ -7,11 +8,17 @@
     <center>
         <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0">
             <top>
-                <ImageView fitHeight="606.0" fitWidth="801.0" layoutX="131.5" layoutY="14.0" preserveRatio="true">
-                    <image>
-                        <Image url="@../ressources/image/plateau_europe.jpg" />
-                    </image>
-                </ImageView>
+                <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
+
+
+                    <ImageView fitHeight="600.0" fitWidth="801.0" layoutX="0.0" layoutY="0.0" preserveRatio="true">
+                        <image>
+                            <Image url="@../ressources/image/plateau_arborescence.jpg" />
+                        </image>
+                    </ImageView>
+
+                    <Button fx:id="plateauEurope" layoutX="0.0" layoutY="0.0" onAction="#switchToScene" text="plateau d'arborescence" />
+                </Pane>
             </top>
         </BorderPane>
     </center>

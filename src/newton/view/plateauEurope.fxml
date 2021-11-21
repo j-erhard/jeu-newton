@@ -1,14 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="newton.controller.ControllerPlateauEurope"
-            prefHeight="400.0" prefWidth="600.0">
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressources/css/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newton.controller.ControllerPlateauEurope">
+    <center>
+        <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0">
+            <top>
+                <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
 
-</AnchorPane>
+
+                    <ImageView fitHeight="600.0" fitWidth="801.0" layoutX="0.0" layoutY="0.0" preserveRatio="true">
+                        <image>
+                            <Image url="@../ressources/image/plateau_europe.jpg" />
+                        </image>
+                    </ImageView>
+
+                    <Button fx:id="plateauArborescence" layoutX="0.0" layoutY="0.0" onAction="#switchToScene" text="plateau d'arborescence" />
+                </Pane>
+            </top>
+        </BorderPane>
+    </center>
+</BorderPane>
