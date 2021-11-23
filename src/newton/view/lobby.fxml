@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressources/css/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newton.controller.ControllerLobby">
+   <top>
+        <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
+            <top>
+                <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
+                    <Button fx:id="plateauArborescence" layoutX="0.0" layoutY="0.0" onAction="#switchToScene" text="Jouer" />
+                    <Button layoutX="279.0" layoutY="146.0" onAction="#connection" text="rejoinde un serveur" />
+                    <TextArea fx:id="adresse" layoutX="252.0" layoutY="205.0" prefHeight="9.0" prefWidth="200.0" promptText="adresse" />
+                    <TextArea fx:id="port" layoutX="252.0" layoutY="268.0" prefHeight="9.0" prefWidth="200.0" promptText="port" />
+
+                    <Button layoutX="253.0" layoutY="406.0" onAction="#envoieMsg" text="envoyer un msg au serveur" />
+                    <TextArea fx:id="message" layoutX="201.0" layoutY="457.0" prefHeight="42.0" prefWidth="302.0" promptText="mesage" />
+                </Pane>
+            </top>
+        </BorderPane>
+   </top>
+</BorderPane>

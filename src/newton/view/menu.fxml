@@ -15,7 +15,7 @@
                     </image>
                 </ImageView>
 
-                <Button fx:id="jouer" layoutX="350.0" layoutY="100.0" onAction="#switchToScene" text="Jouer" />
+                <Button fx:id="lobby" layoutX="350.0" layoutY="100.0" onAction="#switchToScene" text="Jouer" />
                 <Button fx:id="credit" layoutX="350.0" layoutY="150.0" onAction="#switchToScene" text="Credit" />
                 <Button fx:id="options" layoutX="350.0" layoutY="200.0" onAction="#switchToScene" text="Options" />
             </Pane>
