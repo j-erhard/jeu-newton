@@ -1,5 +1,3 @@
-package newton;
-
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
@@ -24,7 +22,8 @@ class Multi extends Thread{
     public void run(){
 
         String string= "";
-        while (true){
+        boolean inLobby = true;
+        while (inLobby){
             String str = null;
             try {
                 str = bf.readLine();
@@ -32,6 +31,12 @@ class Multi extends Thread{
                 e.printStackTrace();
             }
             System.out.println("client: " + str);
+            inLobby = str!=null;
+        }
+        try {
+            bf.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

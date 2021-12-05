@@ -2,7 +2,6 @@ package newton.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import newton.Main;
 import newton.model.Game;
 
 public class ControllerPlateauArborescence extends Controller{
