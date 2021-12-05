@@ -7,6 +7,7 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -21,27 +22,21 @@ public class ControllerDragAndDrop extends Application {
         stage.setTitle("Hello Drag And Drop");
 
         Group root = new Group();
-        Scene scene = new Scene(root, 400, 200);
-        scene.setFill(Color.LIGHTGREEN);
+        Scene scene = new Scene(root, 1500, 200);
 
-        Image test = new Image("newton/ressources/image/carte-Pokemon-18-111-Leviator-GX-240-PV.png");
+
+        Image test = new Image("newton/ressources/image/carte-Pokemon-18-111-Leviator-GX-240-PV.png", 200,200,true, true);
         final ImageView source = new ImageView();
         source.setImage(test);
-        source.setFitHeight(200);
-        source.setFitWidth(100);
 
-        Image test2 = new Image("newton/ressources/image/919cr4oj5QL.png");
+        Image test2 = new Image("newton/ressources/image/919cr4oj5QL.png", 200,200,true, true);
         final ImageView target = new ImageView();
         target.setImage(test2);
         target.setX(500);
-        target.setFitHeight(200);
-        target.setFitWidth(100);
 
         final ImageView target3 = new ImageView();
         target3.setImage(test2);
         target3.setX(800);
-        target3.setFitHeight(200);
-        target3.setFitWidth(100);
 
 
         source.setOnDragDetected(new EventHandler <MouseEvent>() {
@@ -88,7 +83,7 @@ public class ControllerDragAndDrop extends Application {
                 if (event.getGestureSource() != target3 &&
                         event.getDragboard().hasImage()) {
                     /* allow for both copying and moving, whatever user chooses */
-                    event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
+                    event.acceptTransferModes(TransferMode.MOVE);
                 }
 
                 event.consume();
@@ -121,6 +116,7 @@ public class ControllerDragAndDrop extends Application {
                 /* if the data was successfully moved, clear it */
                 if (event.getTransferMode() == TransferMode.MOVE) {
                     source.setVisible(false);
+                    System.out.println("prout");
                 }
 
                 event.consume();
