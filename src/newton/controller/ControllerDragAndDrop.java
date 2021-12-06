@@ -14,18 +14,18 @@ import java.util.Objects;
 
 
 public class ControllerDragAndDrop extends Controller {
-    @FXML Image pion;
+    @FXML ImageView pion;
 
     @FXML
     public void dragDetected(MouseEvent event) {
         ImageView source = (ImageView) event.getSource();
-        //if (source.getImage().equals(pion)) {
+        if (source.getId() != null && source.getId().equals("pion")) {
             Dragboard db = source.startDragAndDrop(TransferMode.ANY);
 
             ClipboardContent content = new ClipboardContent();
             content.putImage(source.getImage());
             db.setContent(content);
-        //}
+        }
 
         event.consume();
 
@@ -45,8 +45,7 @@ public class ControllerDragAndDrop extends Controller {
     public void dragOver(DragEvent event) {
         ImageView source = (ImageView) event.getSource();
 
-        if (event.getGestureSource() != source &&
-                event.getDragboard().hasImage()) {
+        if (event.getGestureSource() != source && event.getDragboard().hasImage()) {
             event.acceptTransferModes(TransferMode.MOVE);
         }
 
@@ -54,11 +53,12 @@ public class ControllerDragAndDrop extends Controller {
     }
 
     public void dragDropped(DragEvent event) {
-        ImageView source = (ImageView) event.getSource();
+        ImageView target = (ImageView) event.getSource();
         Dragboard db = event.getDragboard();
         boolean success = false;
         if (db.hasImage()) {
-            source.setImage(db.getImage());
+            target.setImage(db.getImage());
+            target.setId("pion");
             success = true;
         }
         event.setDropCompleted(success);

@@ -13,9 +13,9 @@
                     <ImageView fitHeight="600.0" fitWidth="801.0" layoutY="31.0" preserveRatio="true">
                         <Image url="@../ressources/image/plateau_europe.jpg" />
                     </ImageView>
-                    <ImageView fitHeight="47.0" fitWidth="44.0" layoutX="267.0" layoutY="548.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDropped" onDragOver="#dragOver" preserveRatio="true">
+                    <ImageView fitHeight="47.0" fitWidth="44.0" layoutX="267.0" layoutY="548.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDropped" onDragOver="#dragOver" fx:id="pion" preserveRatio="true">
                         <image>
-                            <Image preserveRatio="true" requestedHeight="80" requestedWidth="50" smooth="true" fx:id="pion" url="@../ressources/image/pion.png"/>
+                            <Image preserveRatio="true" requestedHeight="80" requestedWidth="50" smooth="true" url="@../ressources/image/pion.png"/>
                         </image>
                     </ImageView>
                     <ImageView fitHeight="47.0" fitWidth="44.0" layoutX="311.0" layoutY="491.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDropped" onDragOver="#dragOver" preserveRatio="true">
