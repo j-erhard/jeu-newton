@@ -12,7 +12,6 @@ class Multi extends Thread{
     InputStreamReader in;
     BufferedReader bf;
 
-    Multi() throws IOException{}
 
     Multi(Socket s) throws IOException{
         this.s=s;
@@ -21,10 +20,20 @@ class Multi extends Thread{
     }
     public void run(){
 
-        String string= "";
+        String str= "";
         boolean inLobby = true;
+
+        // recupérer nom du client:
+        try {
+            str = bf.readLine();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Pseudo enregistré: " + str);
+
+
         while (inLobby){
-            String str = null;
+
             try {
                 str = bf.readLine();
             } catch (IOException e) {

@@ -4,7 +4,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -15,31 +17,70 @@ public class ControllerLobby extends Controller{
 
     @FXML TextArea port;
     @FXML TextArea adresse;
+    @FXML TextArea pseudo;
     @FXML TextArea message;
+    @FXML TextArea chat;
 
-    Socket socketConnection;
-    PrintWriter pr;
+    Socket clientSocket;
+    BufferedReader in;
+    PrintWriter out;
 
     @FXML
     public void initialize() {
         adresse.setText("localhost");
         port.setText("6666");
+        pseudo.setText("Julien");
     }
 
     public void connection(ActionEvent actionEvent) throws IOException {
-        socketConnection = new Socket(adresse.getText(), Integer.parseInt(port.getText()));
-        pr = new PrintWriter(socketConnection.getOutputStream());
+        clientSocket = new Socket(adresse.getText(), Integer.parseInt(port.getText()));
+        //flux pour envoyer
+        out = new PrintWriter(clientSocket.getOutputStream());
+        //flux pour recevoir
+        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        String text ="Client -> julien1";
-        pr.println(text);
-        pr.flush();
+        initPseudo();
+        recevoir();
+    }
+
+    public void initPseudo() {
+        //envoie du pseudo
+        String text = pseudo.getText();
+        out.println(text);
+        out.flush();
     }
 
     public void envoieMsg() {
-        if (pr!=null) {
-            pr.println("Client -> julien1: " + message.getText());
-            pr.flush();
-            System.out.println(message.getText());
+        if (out !=null) {
+            out.println(message.getText());
+            out.flush();
         }
+    }
+
+    public void recevoir() {
+        Thread recevoir = new Thread(new Runnable() {
+            String msg;
+            @Override
+            public void run() {
+                try {
+                    msg = in.readLine();
+                    while(msg!=null){
+                        addText(msg);
+//                        System.out.println(msg);
+                        msg = in.readLine();
+                    }
+                    System.out.println("Serveur déconecté");
+                    out.close();
+                    clientSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        recevoir.start();
+    }
+
+    public void addText(String msg) {
+        chat.setText(msg + "\n" + chat.getText());
     }
 }

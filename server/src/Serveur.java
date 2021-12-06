@@ -1,20 +1,29 @@
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.io.*;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Serveur {
 
-    public static void main(String args[]) throws IOException, InterruptedException {
+    public static ArrayList<Joueur> joueurs = new ArrayList<>();
+
+    public static void main(String args[]) throws IOException {
         ServerSocket ss = new ServerSocket(6666);
+
         while (true) {
 
-            System.out.println("Server is Awaiting");
+            System.out.println("Server is Awaiting a new client");
             Socket s = ss.accept();
-            Multi t = new Multi(s);
-            t.start();
+            joueurs.add(new Joueur(s));
+            System.out.println(joueurs);
 
-            Thread.sleep(2);
-            //ss.close();
+        }
+    }
+
+    public static void redistribuerMessage(Joueur expediteur, String msg) {
+        for (Joueur joueur : joueurs) {
+            joueur.sendMessage(expediteur.getPseudo(), msg);
         }
     }
 }
