@@ -81,6 +81,6 @@ public class ControllerLobby extends Controller{
     }
 
     public void addText(String msg) {
-        chat.setText(msg + "\n" + chat.getText());
+        chat.appendText("\n" + msg);
     }
 }

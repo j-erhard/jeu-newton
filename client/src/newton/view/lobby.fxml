@@ -8,22 +8,22 @@
 <BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressources/css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newton.controller.ControllerLobby">
    <top>
         <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
-            <top>
+         <center>
                 <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
                     <Button fx:id="plateauArborescence" layoutX="0.0" layoutY="0.0" onAction="#switchToScene" text="Jouer" />
-                    <Button layoutX="279.0" layoutY="41.0" onAction="#connection" text="rejoinde un serveur" />
+                    <Button layoutX="279.0" layoutY="41.0" onAction="#connection" text="rejoindre un serveur" />
                     <TextArea fx:id="adresse" layoutX="252.0" layoutY="81.0" prefHeight="9.0" prefWidth="200.0" promptText="adresse" />
                     <TextArea fx:id="port" layoutX="252.0" layoutY="131.0" prefHeight="9.0" prefWidth="200.0" promptText="port" />
                     <TextArea fx:id="pseudo" layoutX="252.0" layoutY="180.0" prefHeight="9.0" prefWidth="200.0" promptText="pseudo" />
 
-                    <Button layoutX="253.0" layoutY="239.0" onAction="#envoieMsg" text="envoyer un msg au serveur" />
-                    <TextArea fx:id="message" layoutX="201.0" layoutY="309.0" prefHeight="42.0" prefWidth="302.0" promptText="mesage" />
+                    <Button layoutX="572.0" layoutY="558.0" onAction="#envoieMsg" prefHeight="42.0" prefWidth="229.0" text="envoyer un msg au serveur" />
+                    <TextArea fx:id="message" layoutY="558.0" prefHeight="42.0" prefWidth="572.0" promptText="mesage" />
 
 
-                    <TextArea fx:id="chat" editable="false" layoutY="400.0" prefHeight="200.0" prefWidth="800.0" />
+                    <TextArea fx:id="chat" editable="false" layoutY="358.0" prefHeight="200.0" prefWidth="800.0"/>
 
                 </Pane>
-            </top>
+         </center>
         </BorderPane>
    </top>
 </BorderPane>
