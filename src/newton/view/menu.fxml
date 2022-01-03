@@ -1,24 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressources/css/style.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newton.controller.ControllerMenu">
+<BorderPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../ressources/css/style.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="newton.controller.ControllerMenu">
 <center>
     <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0">
         <top>
             <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
-                <ImageView fitHeight="379.0" fitWidth="254.0" layoutX="10" layoutY="100.0" preserveRatio="true">
+                <ImageView fitHeight="600.0" fitWidth="800.0">
                     <image>
-                        <Image url="@../ressources/image/fond_ecran.jpg" />
+                        <Image url="@../ressources/image/newton.png" />
                     </image>
                 </ImageView>
 
-                <Button fx:id="jouer" layoutX="350.0" layoutY="100.0" onAction="#switchToScene" text="Jouer" />
-                <Button fx:id="credit" layoutX="350.0" layoutY="150.0" onAction="#switchToScene" text="Credit" />
-                <Button fx:id="options" layoutX="350.0" layoutY="200.0" onAction="#switchToScene" text="Options" />
-                <Button fx:id="dragAndDrop" layoutX="350.0" layoutY="250.0" onAction="#switchToScene" text="DragAndDrop" />
+                <Button fx:id="jouer" layoutX="610.0" layoutY="160.0" onAction="#switchToScene" text="Jouer" />
+                <Button fx:id="dragAndDrop" layoutX="400.0" layoutY="227.0" onAction="#switchToScene" style="-fx-background-color: none;" styleClass="bouton" text="Jouer" textFill="#dadada">
+                  <font>
+                     <Font size="78.0" />
+                  </font>
+                  <cursor>
+                     <Cursor fx:constant="HAND" />
+                  </cursor></Button>
 
             </Pane>
         </top>
