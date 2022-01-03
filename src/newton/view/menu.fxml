@@ -18,8 +18,6 @@
                         <Image url="@../ressources/image/newton.png" />
                     </image>
                 </ImageView>
-
-                <Button fx:id="jouer" layoutX="610.0" layoutY="160.0" onAction="#switchToScene" text="Jouer" />
                 <Button fx:id="dragAndDrop" layoutX="400.0" layoutY="227.0" onAction="#switchToScene" style="-fx-background-color: none;" styleClass="bouton" text="Jouer" textFill="#dadada">
                   <font>
                      <Font size="78.0" />

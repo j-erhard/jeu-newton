@@ -93,7 +93,7 @@ public class ControllerDragAndDrop extends Controller {
                 compteurJ += 1;
                 compteurJaune.setText("Jaune: " + compteurJ);
             }
-        } else if (((ImageView) event.getSource()).getId().contains("potion")) {
+        } else if (((ImageView) event.getSource()).getId() != null && ((ImageView) event.getSource()).getId().contains("potion")) {
             if ("pion".equals(imageDuBled.getId())) {
                 compteurR += 2;
                 compteurRouge.setText("Rouge: " + compteurR);
