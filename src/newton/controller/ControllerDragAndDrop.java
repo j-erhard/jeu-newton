@@ -119,5 +119,20 @@ public class ControllerDragAndDrop extends Controller {
             event.setDropCompleted(success);
 
             event.consume();
+
+            if(compteurB + compteurR + compteurJ + compteurV == 15) {
+                if (compteurV > compteurR && compteurV > compteurJ && compteurV > compteurB) {
+                    System.out.println("le vert gagne avec " + compteurV + " points");
+                }
+                if (compteurB > compteurR && compteurB > compteurJ && compteurB > compteurV) {
+                    System.out.println("le bleu gagne avec " + compteurB + " points");
+                }
+                if (compteurJ > compteurR && compteurJ > compteurV && compteurJ > compteurB) {
+                    System.out.println("le jaune gagne avec " + compteurJ + " points");
+                }
+                if (compteurR > compteurV && compteurR > compteurJ && compteurR > compteurB) {
+                    System.out.println("le rouge gagne avec " + compteurR + " points");
+                }
+            }
     }
 }
