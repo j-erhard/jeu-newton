@@ -133,6 +133,9 @@ public class ControllerDragAndDrop extends Controller {
                 if (compteurR > compteurV && compteurR > compteurJ && compteurR > compteurB) {
                     System.out.println("le rouge gagne avec " + compteurR + " points");
                 }
+                else {
+                    System.out.println("égalité");
+                }
             }
     }
 }
