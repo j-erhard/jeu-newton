@@ -1,0 +1,4 @@
+.bouton:hover {
+    -fx-fill: black;
+    -fx-underline: true;
+}

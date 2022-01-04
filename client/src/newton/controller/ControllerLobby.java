@@ -1,14 +1,22 @@
 package newton.controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
+import javafx.stage.Stage;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.Objects;
 
 public class ControllerLobby extends Controller{
     public ControllerLobby() {
@@ -20,6 +28,8 @@ public class ControllerLobby extends Controller{
     @FXML TextArea pseudo;
     @FXML TextArea message;
     @FXML TextArea chat;
+    @FXML
+    Button DragAndDrop;
 
     Socket clientSocket;
     BufferedReader in;
@@ -30,6 +40,15 @@ public class ControllerLobby extends Controller{
         adresse.setText("localhost");
         port.setText("6666");
         pseudo.setText("Julien");
+    }
+
+    @FXML
+    public void switchToJouer(ActionEvent event) throws IOException {
+        if (out !=null) {
+            out.println("/play");
+            out.flush();
+        }
+        switchToScene(event);
     }
 
     public void connection(ActionEvent actionEvent) throws IOException {
@@ -65,6 +84,18 @@ public class ControllerLobby extends Controller{
                 try {
                     msg = in.readLine();
                     while(msg!=null){
+                        if (msg.contains("/play")) {
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    try {
+                                        switchToSceneJouer((Stage) DragAndDrop.getScene().getWindow());
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                        }
                         addText(msg);
 //                        System.out.println(msg);
                         msg = in.readLine();

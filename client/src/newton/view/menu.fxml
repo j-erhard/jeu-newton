@@ -1,5 +1,3 @@
-
-
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.Cursor?>
@@ -20,7 +18,7 @@
                             <Image url="@../ressources/image/newton.png" />
                         </image>
                     </ImageView>
-                    <Button fx:id="dragAndDrop" layoutX="400.0" layoutY="227.0" onAction="#switchToScene" style="-fx-background-color: none;" styleClass="bouton" text="Jouer" textFill="#dadada">
+                    <Button fx:id="lobby" layoutX="400.0" layoutY="227.0" onAction="#switchToScene" style="-fx-background-color: none;" styleClass="bouton" text="Jouer" textFill="#dadada">
                         <font>
                             <Font size="78.0" />
                         </font>

@@ -32,4 +32,19 @@ public class Controller {
         primaryStage.show();
         scoreView.requestFocus();
     }
+
+    /**
+     * Change de scène en fonction du bouton sur lequel le joueur a cliqué
+     * @param event évènement du bouton
+     * @throws IOException peut retourner une exception
+     */
+    @FXML
+    public void switchToSceneJouer(Stage stage) throws IOException {
+        Parent scoreView = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("../view/DragAndDrop.fxml")));
+        if (primaryStage  == null) primaryStage = stage;
+        primaryStage.setScene(new Scene(scoreView));
+        primaryStage.sizeToScene();
+        primaryStage.show();
+        scoreView.requestFocus();
+    }
 }
