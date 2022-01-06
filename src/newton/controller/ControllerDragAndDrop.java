@@ -1,22 +1,21 @@
 package newton.controller;
 
-import javafx.application.Application;
-import javafx.event.EventHandler;
+import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 
-import java.awt.*;
-import java.util.ArrayList;
-import java.util.Objects;
+import java.util.Random;
 
 
 public class ControllerDragAndDrop extends Controller {
-    ImageView imageDuBled;
+    @FXML ImageView imageDice;
+    ImageView pionDragged;
+    String targetTempId1 = "start";
+    String targetTempId2;
     @FXML ImageView pion;
     @FXML Label compteurJaune;
     @FXML Label compteurBleu;
@@ -48,7 +47,7 @@ public class ControllerDragAndDrop extends Controller {
             ClipboardContent content = new ClipboardContent();
             content.putImage(source.getImage());
             db.setContent(content);
-            imageDuBled = source;
+            pionDragged = source;
         }
 
         event.consume();
@@ -59,7 +58,10 @@ public class ControllerDragAndDrop extends Controller {
     public void dragDone(DragEvent event) {
         ImageView source = (ImageView) event.getSource();
         if (event.getTransferMode() == TransferMode.MOVE) {
-            source.setVisible(false);
+            source.setId(targetTempId1);
+            targetTempId1 = targetTempId2;
+            Image caseGrise = new Image("newton/ressources/image/case.png");
+            source.setImage(caseGrise);
         }
 
         event.consume();
@@ -80,62 +82,93 @@ public class ControllerDragAndDrop extends Controller {
 
     public void dragDropped(DragEvent event) {
         if (((ImageView) event.getSource()).getId() != null && ((ImageView) event.getSource()).getId().contains("pomme")) {
-            if ("pion".equals(imageDuBled.getId())) {
+            if ("pion".equals(pionDragged.getId())) {
                 compteurR += 1;
                 compteurRouge.setText("Rouge: " + compteurR);
-            } else if ("pion2".equals(imageDuBled.getId())) {
+            } else if ("pion2".equals(pionDragged.getId())) {
                 compteurV += 1;
                 compteurVert.setText("Vert: " + compteurV);
-            } else if ("pion3".equals(imageDuBled.getId())) {
+            } else if ("pion3".equals(pionDragged.getId())) {
                 compteurB += 1;
                 compteurBleu.setText("Bleu: " + compteurB);
-            } else if ("pion4".equals(imageDuBled.getId())) {
+            } else if ("pion4".equals(pionDragged.getId())) {
                 compteurJ += 1;
                 compteurJaune.setText("Jaune: " + compteurJ);
             }
         } else if (((ImageView) event.getSource()).getId() != null && ((ImageView) event.getSource()).getId().contains("potion")) {
-            if ("pion".equals(imageDuBled.getId())) {
+            if ("pion".equals(pionDragged.getId())) {
                 compteurR += 2;
                 compteurRouge.setText("Rouge: " + compteurR);
-            } else if ("pion2".equals(imageDuBled.getId())) {
+            } else if ("pion2".equals(pionDragged.getId())) {
                 compteurV += 2;
                 compteurVert.setText("Vert: " + compteurV);
-            } else if ("pion3".equals(imageDuBled.getId())) {
+            } else if ("pion3".equals(pionDragged.getId())) {
                 compteurB += 2;
                 compteurBleu.setText("Bleu: " + compteurB);
-            } else if ("pion4".equals(imageDuBled.getId())) {
+            } else if ("pion4".equals(pionDragged.getId())) {
                 compteurJ += 2;
                 compteurJaune.setText("Jaune: " + compteurJ);
             }
         }
         ImageView target = (ImageView) event.getSource();
-            Dragboard db = event.getDragboard();
-            boolean success = false;
-            if (db.hasImage()) {
-                target.setImage(imageDuBled.getImage());
-                target.setId(imageDuBled.getId());
-                success = true;
-            }
-            event.setDropCompleted(success);
+        Dragboard db = event.getDragboard();
+        boolean success = false;
+        if (db.hasImage()) {
+            targetTempId2 = target.getId();
+            target.setImage(pionDragged.getImage());
+            target.setId(pionDragged.getId());
+            success = true;
+        }
+        event.setDropCompleted(success);
 
-            event.consume();
+        event.consume();
 
-            if(compteurB + compteurR + compteurJ + compteurV == 15) {
-                if (compteurV > compteurR && compteurV > compteurJ && compteurV > compteurB) {
-                    System.out.println("le vert gagne avec " + compteurV + " points");
-                }
-                else if (compteurB > compteurR && compteurB > compteurJ && compteurB > compteurV) {
-                    System.out.println("le bleu gagne avec " + compteurB + " points");
-                }
-                else if (compteurJ > compteurR && compteurJ > compteurV && compteurJ > compteurB) {
-                    System.out.println("le jaune gagne avec " + compteurJ + " points");
-                }
-                else if (compteurR > compteurV && compteurR > compteurJ && compteurR > compteurB) {
-                    System.out.println("le rouge gagne avec " + compteurR + " points");
-                }
-                else {
-                    System.out.println("égalité");
-                }
-            }
+        if(partieTerminee()) {
+            System.out.println(trouveGagnant());
+        }
+    }
+
+    public boolean partieTerminee() {
+        return compteurB + compteurR + compteurJ + compteurV == 15;
+    }
+
+    public String trouveGagnant() {
+        if (compteurV > compteurR && compteurV > compteurJ && compteurV > compteurB) {
+            return "le vert gagne avec " + compteurV + " points";
+        }
+        else if (compteurB > compteurR && compteurB > compteurJ && compteurB > compteurV) {
+            return "le bleu gagne avec " + compteurB + " points";
+        }
+        else if (compteurJ > compteurR && compteurJ > compteurV && compteurJ > compteurB) {
+            return "le jaune gagne avec " + compteurJ + " points";
+        }
+        else if (compteurR > compteurV && compteurR > compteurJ && compteurR > compteurB) {
+            return "le rouge gagne avec " + compteurR + " points";
+        }
+        else {
+            return "égalité";
+        }
+    }
+    @FXML
+    public void roll(Event event) {
+        Random rand = new Random();
+        int value = rand.nextInt(3)+1;
+        Image image;
+        switch (value){
+            case 1:
+                image = new Image("newton/ressources/image/1_dot.png");
+                imageDice.setImage(image);
+                break;
+            case 2:
+                image = new Image("newton/ressources/image/2_dots.png");
+                imageDice.setImage(image);
+                break;
+            case 3:
+                image = new Image("newton/ressources/image/3_dots.png");
+                imageDice.setImage(image);
+                break;
+            default:
+                System.out.println("Erreur");
+        }
     }
 }
