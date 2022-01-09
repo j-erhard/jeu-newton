@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
+import newton.model.Client;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -28,12 +29,7 @@ public class ControllerLobby extends Controller{
     @FXML TextArea pseudo;
     @FXML TextArea message;
     @FXML TextArea chat;
-    @FXML
-    Button DragAndDrop;
-
-    Socket clientSocket;
-    BufferedReader in;
-    PrintWriter out;
+    @FXML public Button DragAndDrop;
 
     @FXML
     public void initialize() {
@@ -44,74 +40,26 @@ public class ControllerLobby extends Controller{
 
     @FXML
     public void switchToJouer(ActionEvent event) throws IOException {
-        if (out !=null) {
-            out.println("/play");
-            out.flush();
+        if (Client.out !=null) {
+            Client.envoieMessage("/play");
         }
         switchToScene(event);
     }
 
     public void connection(ActionEvent actionEvent) throws IOException {
-        clientSocket = new Socket(adresse.getText(), Integer.parseInt(port.getText()));
+        Socket clientSocket = new Socket(adresse.getText(), Integer.parseInt(port.getText()));
         //flux pour envoyer
-        out = new PrintWriter(clientSocket.getOutputStream());
+        PrintWriter out = new PrintWriter(clientSocket.getOutputStream());
         //flux pour recevoir
-        in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+        BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
 
-        initPseudo();
-        recevoir();
-    }
-
-    public void initPseudo() {
-        //envoie du pseudo
-        String text = pseudo.getText();
-        out.println(text);
-        out.flush();
+        Client.connection(clientSocket, out, in, this);
+        Client.initPseudo(pseudo.getText());
+        Client.chat = chat;
+        Client.recevoir();
     }
 
     public void envoieMsg() {
-        if (out !=null) {
-            out.println(message.getText());
-            out.flush();
-        }
-    }
-
-    public void recevoir() {
-        Thread recevoir = new Thread(new Runnable() {
-            String msg;
-            @Override
-            public void run() {
-                try {
-                    msg = in.readLine();
-                    while(msg!=null){
-                        if (msg.contains("/play")) {
-                            Platform.runLater(new Runnable() {
-                                @Override
-                                public void run() {
-                                    try {
-                                        switchToSceneJouer((Stage) DragAndDrop.getScene().getWindow());
-                                    } catch (IOException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                            });
-                        }
-                        addText(msg);
-//                        System.out.println(msg);
-                        msg = in.readLine();
-                    }
-                    System.out.println("Serveur déconecté");
-                    out.close();
-                    clientSocket.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-        recevoir.start();
-    }
-
-    public void addText(String msg) {
-        chat.appendText("\n" + msg);
+        Client.envoieMessage(message.getText());
     }
 }

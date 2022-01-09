@@ -15,9 +15,10 @@ public class Serveur {
 
             System.out.println("Server is Awaiting a new client");
             Socket s = ss.accept();
-            joueurs.add(new Joueur(s));
+            Joueur j = new Joueur(s);
+            joueurs.add(j);
+            Serveur.redistribuerMessage(j, "nous a rejoinds !");
             System.out.println(joueurs);
-
         }
     }
 
