@@ -7,6 +7,7 @@ import java.net.Socket;
 public class Joueur {
     private Socket s;
     private String pseudo;
+    private int score;
 
     public InputStreamReader in;
     public BufferedReader bf;
