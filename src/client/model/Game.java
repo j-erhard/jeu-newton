@@ -1,4 +1,4 @@
-package newton.model;
+package client.model;
 
 public class Game {
     

@@ -1,8 +1,8 @@
-package newton.controller;
+package client.controller;
 
+import client.model.Game;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import newton.model.Game;
 
 public class ControllerPlateauArborescence extends Controller{
     @FXML public Label compteurTour;

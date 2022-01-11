@@ -1,4 +1,4 @@
-package newton.controller;
+package client.controller;
 
 public class ControllerCredit {
 }

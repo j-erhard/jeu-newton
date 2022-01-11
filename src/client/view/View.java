@@ -1,4 +1,4 @@
-package newton.view;
+package client.view;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.StackPane;

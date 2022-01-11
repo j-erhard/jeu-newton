@@ -1,8 +1,7 @@
-package newton.controller;
+package client.controller;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -60,7 +59,7 @@ public class ControllerDragAndDrop extends Controller {
         if (event.getTransferMode() == TransferMode.MOVE) {
             source.setId(targetTempId1);
             targetTempId1 = targetTempId2;
-            Image caseGrise = new Image("newton/ressources/image/case.png");
+            Image caseGrise = new Image("client/ressources/image/case.png");
             source.setImage(caseGrise);
         }
 
@@ -156,15 +155,15 @@ public class ControllerDragAndDrop extends Controller {
         Image image;
         switch (value){
             case 1:
-                image = new Image("newton/ressources/image/1_dot.png");
+                image = new Image("client/ressources/image/1_dot.png");
                 imageDice.setImage(image);
                 break;
             case 2:
-                image = new Image("newton/ressources/image/2_dots.png");
+                image = new Image("client/ressources/image/2_dots.png");
                 imageDice.setImage(image);
                 break;
             case 3:
-                image = new Image("newton/ressources/image/3_dots.png");
+                image = new Image("client/ressources/image/3_dots.png");
                 imageDice.setImage(image);
                 break;
             default:

@@ -1,4 +1,4 @@
-package newton.controller;
+package client.controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -35,7 +35,6 @@ public class Controller {
 
     /**
      * Change de scène en fonction du bouton sur lequel le joueur a cliqué
-     * @param event évènement du bouton
      * @throws IOException peut retourner une exception
      */
     @FXML
