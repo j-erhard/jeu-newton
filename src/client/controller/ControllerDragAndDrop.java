@@ -2,6 +2,7 @@ package client.controller;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,42 +27,9 @@ public class ControllerDragAndDrop extends Controller {
     public int compteurB;
     public int compteurV;
     public int compteurR;
-    /*
-    @FXML ImageView case1;
-    @FXML ImageView case2;
-    @FXML ImageView case3;
-    @FXML ImageView case4;
-    @FXML ImageView case5;
-    @FXML ImageView case6;
-    @FXML ImageView case7;
-    @FXML ImageView case8;
-    @FXML ImageView case9;
-    @FXML ImageView case10;
-    @FXML ImageView case11;
-    @FXML ImageView case12;
-    @FXML ImageView case13;
-    @FXML ImageView case14;
-    @FXML ImageView case15;
-    @FXML ImageView case16;
-    @FXML ImageView case17;
-    @FXML ImageView case18;
-    @FXML ImageView case19;
-    @FXML ImageView case20;
-    @FXML ImageView case21;
-    @FXML ImageView case22;
-    @FXML ImageView case23;
-    @FXML ImageView case24;
-    @FXML ImageView case25;
-    @FXML ImageView case26;
-    @FXML ImageView pomme1;
-    @FXML ImageView pomme2;
-    @FXML ImageView pomme3;
-    @FXML ImageView potion1;
-    @FXML ImageView potion2;
-    @FXML ImageView potion3;
-    @FXML ImageView potion4;
-     */
+    @FXML Button buttonRoll;
     HashMap<String, ArrayList<String>> hashMap = new HashMap<>();
+    int value = 0;
 
     public void createTree() {
         hashMap.put("start", new ArrayList<>(Arrays.asList("case1", "case6", "case19")));
@@ -143,15 +111,17 @@ public class ControllerDragAndDrop extends Controller {
 
     @FXML
     public void dragOver(DragEvent event) {
-        ImageView target = (ImageView) event.getSource();
-        String targetId = target.getId();
-        ArrayList<String> possibleTarget = hashMap.get(targetTempId1);
-        if (possibleTarget.contains(targetId)) {
-            if (event.getGestureSource() != target && event.getDragboard().hasImage()) {
-                event.acceptTransferModes(TransferMode.MOVE);
-            }
+        if(value>0) {
+            ImageView target = (ImageView) event.getSource();
+            String targetId = target.getId();
+            ArrayList<String> possibleTarget = hashMap.get(targetTempId1);
+            if (possibleTarget.contains(targetId)) {
+                if (event.getGestureSource() != target && event.getDragboard().hasImage()) {
+                    event.acceptTransferModes(TransferMode.MOVE);
+                }
 
-            event.consume();
+                event.consume();
+            }
         }
     }
 
@@ -196,7 +166,7 @@ public class ControllerDragAndDrop extends Controller {
             success = true;
         }
         event.setDropCompleted(success);
-
+        value--;
         event.consume();
 
         if(partieTerminee()) {
@@ -226,9 +196,10 @@ public class ControllerDragAndDrop extends Controller {
         }
     }
     @FXML
-    public void roll(Event event) {
+    public void roll() {
+        buttonRoll.setDisable(true);
         Random rand = new Random();
-        int value = rand.nextInt(3)+1;
+        value = rand.nextInt(3)+1;
         Image image;
         switch (value){
             case 1:
