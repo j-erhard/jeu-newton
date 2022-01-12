@@ -3,19 +3,17 @@ package client.controller;
 import org.junit.*;
 
 public class DragAndDropUnitTest {
-/*
+
     @Test
     public void testPartieTerminee() {
         ControllerDragAndDrop controller = new ControllerDragAndDrop();
-        controller.compteurJ2 = 5;
-        controller.compteurJ1 = 3;
-        controller.compteurJ4 = 1;
-        controller.compteurJ3 = 4;
+        controller.tours = 9;
         Assert.assertFalse(controller.partieTerminee());
-        controller.compteurJ4 = 3;
+        controller.tours = 10;
         Assert.assertTrue(controller.partieTerminee());
     }
 
+    /*
     @Test
     public void testTrouveGagnantJauneGagne() {
         ControllerDragAndDrop controller = new ControllerDragAndDrop();

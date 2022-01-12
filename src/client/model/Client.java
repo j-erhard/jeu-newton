@@ -64,7 +64,7 @@ public class Client {
 //                        System.out.println(msg);
                         msg = in.readLine();
                     }
-                    System.out.println("Serveur déconecté");
+                    System.out.println("Serveur déconnecté");
                     out.close();
                     clientSocket.close();
                 } catch (IOException e) {
