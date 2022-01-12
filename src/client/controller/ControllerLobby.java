@@ -28,7 +28,7 @@ public class ControllerLobby extends Controller{
     public void initialize() {
         adresse.setText("localhost");
         port.setText("6666");
-        pseudo.setText("Julien");
+        pseudo.setText("Pseudo");
     }
 
     @FXML

@@ -19,7 +19,7 @@ public class Serveur {
             Socket s = ss.accept();
             Joueur j = new Joueur(s);
             joueurs.add(j);
-            Serveur.redistribuerMessage(j, "nous a rejoinds !");
+            Serveur.redistribuerMessage(j, "nous a rejoint !");
             System.out.println(joueurs);
         }
     }
