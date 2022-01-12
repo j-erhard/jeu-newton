@@ -100,10 +100,8 @@
                     <ImageView id="potion2" fitHeight="47.0" fitWidth="44.0" layoutX="324.0" layoutY="166.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDropped" onDragOver="#dragOver" preserveRatio="true">
                         <Image preserveRatio="true" requestedHeight="80" requestedWidth="50" smooth="true" url="@../ressources/image/potion.png" />
                     </ImageView>
-                    <Label fx:id="compteurJoueur1" layoutX="21.0" layoutY="6.0" text="Jaune: 99" />
-                    <Label fx:id="compteurJoueur2" layoutX="251.0" layoutY="6.0" text="Bleu: 99" />
-                    <Label fx:id="compteurJoueur4" layoutX="505.0" layoutY="6.0" text="Rouge: 99" />
-                    <Label fx:id="compteurJoueur3" layoutX="712.0" layoutY="6.0" text="Vert: 99" />
+                    <Label fx:id="compteurJoueur1" layoutX="21.0" layoutY="6.0" text="Nombre de points : 99" />
+                    <Label fx:id="nbTours" layoutX="200.0" layoutY="6.0" text="Nombre de tours : 99" />
                     <ButtonBar layoutX="530.0" layoutY="494.0" prefHeight="109.0" prefWidth="270.0">
                         <buttons>
                             <Button fx:id="buttonRoll" mnemonicParsing="false" onAction="#roll" prefHeight="25.0" text="Lancer de dé" />
@@ -133,6 +131,7 @@
                     <ImageView id="potion5" fitHeight="47.0" fitWidth="44.0" layoutX="725.0" layoutY="357.0" onDragDetected="#dragDetected" onDragDone="#dragDone" onDragDropped="#dragDropped" onDragOver="#dragOver" preserveRatio="true">
                         <Image preserveRatio="true" requestedHeight="80" requestedWidth="50" smooth="true" url="@../ressources/image/potion.png" />
                     </ImageView>
+                    <Label fx:id="finPartie" layoutX="160.0" layoutY="220.0" textFill="darkred" text="Le joueur a fini avec 99 points ! Bravo !" disable="true"/>
                 </Pane>
             </top>
         </BorderPane>

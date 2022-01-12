@@ -10,7 +10,7 @@
         <BorderPane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
          <center>
                 <Pane maxHeight="600.0" maxWidth="800" minHeight="600" minWidth="800" prefWidth="800.0" BorderPane.alignment="CENTER">
-                    <Button fx:id="DragAndDrop" layoutX="0.0" layoutY="0.0" onAction="#switchToJouer" text="Jouer" />
+                    <Button fx:id="DragAndDrop" layoutX="250.0" layoutY="260.0" onAction="#switchToJouer" textFill="black" minWidth="200" style="-fx-font-size:15; -fx-background-color: #bfff00" text="Lancer la partie !" />
                     <Button layoutX="279.0" layoutY="41.0" onAction="#connection" text="rejoindre un serveur" />
                     <TextArea fx:id="adresse" layoutX="252.0" layoutY="81.0" prefHeight="9.0" prefWidth="200.0" promptText="adresse" />
                     <TextArea fx:id="port" layoutX="252.0" layoutY="131.0" prefHeight="9.0" prefWidth="200.0" promptText="port" />

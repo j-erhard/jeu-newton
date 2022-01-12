@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,29 +23,23 @@ public class ControllerDragAndDrop extends Controller {
     String targetTempId1 = "start";
     String targetTempId2;
     @FXML Label compteurJoueur1;
-    @FXML Label compteurJoueur2;
-    @FXML Label compteurJoueur3;
-    @FXML Label compteurJoueur4;
+    @FXML Label finPartie;
     public int compteurJ1;
-    public int compteurJ2;
-    public int compteurJ3;
-    public int compteurJ4;
     @FXML Button buttonRoll;
     int value = 0;
     Tree tree = new Tree();
-
+    @FXML Label nbTours;
+    int tours;
 
 
     @FXML
     public void initialize() {
-        compteurJoueur1.setText("Jaune: 0");
-        compteurJoueur2.setText("Bleu: 0");
-        compteurJoueur3.setText("Vert: 0");
-        compteurJoueur4.setText("Rouge: 0");
+        finPartie.setDisable(true);
+        finPartie.setStyle("-fx-font: 0 arial;");
+        tours = 0;
+        compteurJoueur1.setText("Nombres de points: 0");
+        nbTours.setText("Nombre de tours : " + tours);
         compteurJ1 = 0;
-        compteurJ2 = 0;
-        compteurJ3 = 0;
-        compteurJ4 = 0;
     }
 
     @FXML
@@ -93,31 +90,13 @@ public class ControllerDragAndDrop extends Controller {
         String url = ((ImageView) event.getSource()).getImage().getUrl();
         if (((ImageView) event.getSource()).getId() != null && url.contains("pomme")) {
             if ("pion".equals(pionDragged.getId())) {
-                compteurJ2 += 1;
-                compteurJoueur2.setText("Joueur2: " + compteurJ2);
-            } else if ("pion2".equals(pionDragged.getId())) {
-                compteurJ3 += 1;
-                compteurJoueur3.setText("Joueur3: " + compteurJ3);
-            } else if ("pion3".equals(pionDragged.getId())) {
-                compteurJ4 += 1;
-                compteurJoueur4.setText("Joueur4: " + compteurJ4);
-            } else if ("pion4".equals(pionDragged.getId())) {
                 compteurJ1 += 1;
-                compteurJoueur1.setText("Joueur1: " + compteurJ1);
+                compteurJoueur1.setText("Nombre de points : " + compteurJ1);
             }
         } else if (((ImageView) event.getSource()).getId() != null && url.contains("potion")) {
             if ("pion".equals(pionDragged.getId())) {
-                compteurJ2 += 2;
-                compteurJoueur2.setText("Joueur2: " + compteurJ2);
-            } else if ("pion2".equals(pionDragged.getId())) {
-                compteurJ3 += 2;
-                compteurJoueur3.setText("Joueur3: " + compteurJ3);
-            } else if ("pion3".equals(pionDragged.getId())) {
-                compteurJ4 += 2;
-                compteurJoueur4.setText("Joueur4: " + compteurJ4);
-            } else if ("pion4".equals(pionDragged.getId())) {
                 compteurJ1 += 2;
-                compteurJoueur1.setText("Joueur1: " + compteurJ1);
+                compteurJoueur1.setText("Nombre de points : " + compteurJ1);
             }
         }
         ImageView target = (ImageView) event.getSource();
@@ -132,33 +111,27 @@ public class ControllerDragAndDrop extends Controller {
         event.setDropCompleted(success);
         value--;
         if(value == 0){
+            tours++;
+            nbTours.setText("Nombre de tours : " + tours);
             buttonRoll.setDisable(false);
+        }
+        if(partieTerminee()) {
+            finPartie();
         }
         event.consume();
 
-        if(partieTerminee()) {
-            System.out.println(trouveGagnant());
-        }
     }
 
     public boolean partieTerminee() {
-        return compteurJ2 + compteurJ4 + compteurJ1 + compteurJ3 == 15;
+        return tours==10;
     }
 
-    public String trouveGagnant() {
-        if (compteurJ3 > compteurJ4 && compteurJ3 > compteurJ1 && compteurJ3 > compteurJ2) {
-            return "le joueur3 gagne avec " + compteurJ3 + " points";
-        }
-        else if (compteurJ2 > compteurJ4 && compteurJ2 > compteurJ1 && compteurJ2 > compteurJ3) {
-            return "le joueur2 gagne avec " + compteurJ2 + " points";
-        }
-        else if (compteurJ1 > compteurJ4 && compteurJ1 > compteurJ3 && compteurJ1 > compteurJ2) {
-            return "le joueur1 gagne avec " + compteurJ1 + " points";
-        }
-        else if (compteurJ4 > compteurJ3 && compteurJ4 > compteurJ1 && compteurJ4 > compteurJ2) {
-            return "le joueur4 gagne avec " + compteurJ4 + " points";
-        }
-        return "égalité";
+    public void finPartie() {
+        buttonRoll.setDisable(true);
+        finPartie.setText("Le joueur a fini la partie avec " + compteurJ1 + " points ! Bravo !");
+        finPartie.setStyle("-fx-font: 24 arial;");
+        finPartie.setBackground(new Background(new BackgroundFill(Color.rgb(255, 255, 255, 0.8), null, null)));
+        finPartie.setDisable(false);
     }
     @FXML
     public void roll() {
